@@ -1,3 +1,6 @@
 __pycache__
+
 src/inputs
 src/outputs
+
+infra/.terraform

@@ -3,24 +3,18 @@ import json
 import logging
 from typing import Any, Dict
 from processa_preco_medio import calcular_medias_por_ano_e_marca
+from setup_directories import LOCAL_INPUT_DIR, LOCAL_OUTPUT_DIR, setup_directories
 
 import boto3
 from types_boto3_s3.client import S3Client
 from botocore.exceptions import ClientError
+
 
 # Inicializa o cliente fora do handler para aproveitar o reuso de conexão (Warm Start)
 s3_client: S3Client = boto3.client('s3')  # type: ignore
 
 logger = logging.getLogger()
 logger.setLevel("INFO")
-
-LOCAL_INPUT_DIR = "./inputs"
-LOCAL_OUTPUT_DIR = "./outputs"
-
-
-def setup_directories():
-    os.makedirs(LOCAL_INPUT_DIR, exist_ok=True)
-    os.makedirs(LOCAL_OUTPUT_DIR, exist_ok=True)
 
 
 def get_input_from_s3(bucket: str, key: str):
@@ -56,7 +50,7 @@ def upload_output_to_s3(bucket: str, key: str):
             f"Enviando {local_path} para s3://{bucket}/outputs/{key}...")
         s3_client.upload_file(
             Bucket=bucket,
-            Filename=key,
+            Filename=local_path,
             Key=f"outputs/{key}",
             ExtraArgs={'ContentType': 'application/json'}
         )
@@ -71,8 +65,8 @@ def handler(event: Dict[str, Any], context: Any):
     try:
         setup_directories()
 
-        input_key = event["input"]
-        output_key = event["output"]
+        input_key = event.get("input")
+        output_key = event.get("output")
         bucket_name = os.environ.get("S3_BUCKET")
 
         if not input_key or not output_key:

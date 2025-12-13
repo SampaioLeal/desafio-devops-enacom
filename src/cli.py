@@ -1,6 +1,7 @@
 import json
 import argparse
 from processa_preco_medio import calcular_medias_por_ano_e_marca
+from setup_directories import setup_directories
 
 
 def main():
@@ -25,9 +26,11 @@ def main():
 
     args = parser.parse_args()
 
-    medias = calcular_medias_por_ano_e_marca(args.input)
+    setup_directories()
 
-    with open("../outputs/" + args.output, "w", encoding="utf-8") as f:
+    medias = calcular_medias_por_ano_e_marca(f"inputs/{args.input}")
+
+    with open(f"outputs/{args.output}", "w", encoding="utf-8") as f:
         json.dump(medias, f, ensure_ascii=False, indent=2)
 
     print(f"Arquivo JSON gerado em: {args.output}")
