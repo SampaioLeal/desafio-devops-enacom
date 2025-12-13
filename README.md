@@ -63,5 +63,3 @@ Notas:
 
 ### Ajustes
 Se preferir o resultado como uma lista de objetos (por exemplo, `[{"anoModelo": 1992, "marca": "Acura", "precoMedio": 12104.23}]`), adapte e peça para atualizarmos o script.
-
-
