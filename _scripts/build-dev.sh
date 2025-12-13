@@ -1,1 +1,1 @@
-docker build --platform linux/amd64 --provenance=false -t desafio-devops:test .
+docker build --platform linux/amd64 --provenance=false -t devops-challenge:test .
