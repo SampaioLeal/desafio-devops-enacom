@@ -58,11 +58,11 @@ jobs:
           terraform_wrapper: false
 
       - name: Terraform Init
-        working-directory: ${{ github.action_path }}/infra
+        working-directory: infra
         run: |
           terraform init
 
       - name: Terraform Apply
-        working-directory: ${{ github.action_path }}/infra
+        working-directory: infra
         run: |
           terraform apply
