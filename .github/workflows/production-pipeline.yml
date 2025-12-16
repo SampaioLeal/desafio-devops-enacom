@@ -33,7 +33,7 @@ jobs:
         run: |
           docker build --platform linux/amd64 --provenance=false -t -t "$ECR_REGISTRY/$ECR_REPOSITORY:latest" .
           docker push "$ECR_REGISTRY/$ECR_REPOSITORY:latest"
-          echo "Full Image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          echo "Full Image: $ECR_REGISTRY/$ECR_REPOSITORY:latest"
 
   deploy:
     name: Deploy new image to Production
