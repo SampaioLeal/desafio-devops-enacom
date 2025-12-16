@@ -29,11 +29,12 @@ jobs:
       - name: Build image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: ${{ env.ECR_REPO_NAME }}
+          ECR_REPOSITORY: ${{ vars.ECR_REPO_NAME }}
+          IMAGE_TAG: latest
         run: |
-          docker build --platform linux/amd64 --provenance=false -t "$ECR_REGISTRY/$ECR_REPOSITORY:latest" .
-          docker push "$ECR_REGISTRY/$ECR_REPOSITORY:latest"
-          echo "Full Image: $ECR_REGISTRY/$ECR_REPOSITORY:latest"
+          docker build --platform linux/amd64 --provenance=false -t "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" .
+          docker push "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          echo "Full Image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
   deploy:
     name: Deploy new image to Production
