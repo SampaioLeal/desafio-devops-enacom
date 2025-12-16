@@ -31,7 +31,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ env.ECR_REPO_NAME }}
         run: |
-          docker build --platform linux/amd64 --provenance=false -t -t "$ECR_REGISTRY/$ECR_REPOSITORY:latest" .
+          docker build --platform linux/amd64 --provenance=false -t "$ECR_REGISTRY/$ECR_REPOSITORY:latest" .
           docker push "$ECR_REGISTRY/$ECR_REPOSITORY:latest"
           echo "Full Image: $ECR_REGISTRY/$ECR_REPOSITORY:latest"
 
