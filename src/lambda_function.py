@@ -61,7 +61,7 @@ def upload_output_to_s3(bucket: str, key: str):
         raise e
 
 
-def handler(event: Dict[str, Any], context: Any):
+def handler(event: Dict[str, Any], context: Any) -> dict[str, Any]:
     try:
         setup_directories()
 
@@ -90,6 +90,7 @@ def handler(event: Dict[str, Any], context: Any):
         upload_output_to_s3(bucket_name, output_key)
 
         return {
+            "statusCode": 200,
             "message": f"Processamento concluído. Arquivo gerado: {local_output_path}"
         }
     except Exception as e:

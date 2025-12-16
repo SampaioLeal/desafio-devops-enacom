@@ -74,3 +74,24 @@ Notas:
 ## Erros comuns
 - "CSV sem cabeçalho ou vazio": confirme que o arquivo possui a primeira linha com nomes de colunas.
 - "Cabeçalho inesperado": confirme que existem as colunas `anoModelo`, `marca` e `valor`.
+
+## Docker
+
+Existe um arquivo `Dockerfile` contendo instruções para construção de uma imagem docker pronta para ser executada na nuvem AWS no serviço AWS Lambda.
+Mesmo seguindo os padrões do serviço Lambda é possível executar a imagem na sua máquina utilizando os seguintes comandos e scripts:
+
+```sh
+./_scripts/build-dev.sh
+
+./_scripts/test-dev.sh
+```
+
+As seguintes variáveis de ambiente são necessárias para executar:
+
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+- S3_BUCKET
+  
+## Infraestrutura
+
+Link: [README](/infra/README.md)
