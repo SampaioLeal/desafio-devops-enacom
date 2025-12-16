@@ -1,6 +1,6 @@
 module "ecr_repository" {
   source  = "terraform-aws-modules/ecr/aws"
-  version = "3.1.1"
+  version = "3.1.0"
 
   repository_name = "devops-challenge-lambda-${var.environment}"
   repository_force_delete = true
