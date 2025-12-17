@@ -65,4 +65,4 @@ jobs:
       - name: Terraform Apply
         working-directory: infra
         run: |
-          terraform apply
+          terraform apply -auto-approve
